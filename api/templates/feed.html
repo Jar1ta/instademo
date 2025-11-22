@@ -1,12 +1,100 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>Noticias</h2>
-<ul>
-{% for item in items %}
-<li>
-    <a href="{{ item.link }}">{{ item.title }}</a><br>
-    <small>{{ item.published }}</small>
-</li>
-{% endfor %}
-</ul>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #182848;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .feed-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #182848;
+        }
+
+        .card-description {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .link {
+            display: inline-block;
+            margin-top: 12px;
+            background: #4b6cb7;
+            padding: 10px 14px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            background: #3a56a3;
+        }
+
+        .back {
+            margin-bottom: 20px;
+            display: inline-block;
+            color: #3a56a3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>🗞 Feed RSS</header>
+
+    <div class="feed-container">
+
+        <a href="/" class="back">⬅ Volver al inicio</a>
+
+        {% for item in items %}
+        <div class="card">
+            <div class="card-title">{{ item.title }}</div>
+            <div class="card-description">{{ item.summary }}</div>
+
+            {% if item.link %}
+            <a class="link" href="{{ item.link }}" target="_blank">Leer más</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
