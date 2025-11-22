@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Noticias</h2>
+<ul>
+{% for item in items %}
+<li>
+    <a href="{{ item.link }}">{{ item.title }}</a><br>
+    <small>{{ item.published }}</small>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
